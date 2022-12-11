@@ -14,7 +14,7 @@ const Inputs = ({
     <div className="mb-8 max-w-lg gap-2 rounded-xl bg-gray-100 p-6">
       <div className="mb-4 flex flex-col">
         <input
-          className="mb-4 h-8 w-2/3 cursor-pointer appearance-none rounded-lg border px-2"
+          className="mb-4 h-8 w-2/3 cursor-pointer appearance-none rounded-lg border px-2 text-left"
           type="date"
           defaultValue={moment().format('yyyy-MM-DD')}
           onChange={(e) => {
