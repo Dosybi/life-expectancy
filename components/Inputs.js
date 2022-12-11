@@ -14,7 +14,7 @@ const Inputs = ({
     <div className="mb-8 max-w-lg gap-2 rounded-xl bg-gray-100 p-6">
       <div className="mb-4 flex flex-col">
         <input
-          className="mb-4 h-8 w-2/3 cursor-pointer rounded-lg border p-1"
+          className="mb-4 h-8 w-2/3 cursor-pointer appearance-none rounded-lg border px-2"
           type="date"
           defaultValue={moment().format('yyyy-MM-DD')}
           onChange={(e) => {
@@ -22,7 +22,7 @@ const Inputs = ({
           }}
         ></input>
         <select
-          className="h-8 w-2/3 cursor-pointer rounded-lg border"
+          className="h-8 w-2/3 cursor-pointer appearance-none rounded-lg border px-2"
           name="countries"
           defaultValue={'Казахстан'}
           onChange={(e) => {
