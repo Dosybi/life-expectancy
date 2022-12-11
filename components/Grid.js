@@ -47,7 +47,7 @@ const Grid = ({ number, currentWeek }) => {
       {currentWeek ? (
         <>
           <Legend />
-          <div className="grid grid-cols-52 gap-0.5 gap-y-1">
+          <div className="-mx-7 grid grid-cols-52 gap-0.5 gap-y-1 md:m-0">
             {numberOfCells.map((cell) => {
               return (
                 <GridCell
