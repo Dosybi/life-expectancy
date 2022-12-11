@@ -11,7 +11,7 @@ const Inputs = ({
   const [toggledGender, setToggledGender] = useState('male')
 
   return (
-    <div className="mb-8 max-w-lg gap-2 rounded-xl bg-gray-100 p-8">
+    <div className="mb-8 max-w-lg gap-2 rounded-xl bg-gray-100 p-6">
       <div className="mb-4 flex flex-col">
         <input
           className="mb-4 h-8 w-2/3 cursor-pointer rounded-lg border p-4"
