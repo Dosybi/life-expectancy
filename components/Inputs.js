@@ -8,7 +8,7 @@ const Inputs = ({
   handleCountryChange,
   handleGenderChange,
 }) => {
-  const [toggledGender, setToggledGender] = useState('male')
+  const [toggledGender, setToggledGender] = useState('')
 
   return (
     <div className="mb-8 max-w-lg gap-2 rounded-xl bg-gray-100 p-6">
@@ -22,7 +22,7 @@ const Inputs = ({
           }}
         ></input>
         <select
-          className="h-8 w-2/3 cursor-pointer appearance-none rounded-lg border px-2 text-center"
+          className="h-8 w-2/3 cursor-pointer appearance-none rounded-lg border px-2"
           name="countries"
           defaultValue={'Казахстан'}
           onChange={(e) => {
@@ -40,8 +40,10 @@ const Inputs = ({
       </div>
       <div className="flex gap-2">
         <button
-          className={`h-8 w-12 rounded-lg text-white ${
-            toggledGender === 'male' ? 'bg-blue-500' : 'bg-gray-400'
+          className={`h-8 w-12 rounded-lg bg-white text-black ${
+            toggledGender === 'male'
+              ? 'border-[3px] border-blue-500'
+              : 'text-gray-400'
           }`}
           name="male"
           onClick={() => {
@@ -52,8 +54,10 @@ const Inputs = ({
           М
         </button>
         <button
-          className={`h-8 w-12 rounded-lg text-white ${
-            toggledGender === 'female' ? 'bg-blue-500' : 'bg-gray-400'
+          className={`h-8 w-12 rounded-lg bg-white text-black ${
+            toggledGender === 'female'
+              ? 'border-[3px] border-blue-500'
+              : 'text-gray-400'
           }`}
           name="female"
           onClick={() => {

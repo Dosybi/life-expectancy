@@ -11,7 +11,7 @@ import { data } from '../data'
 
 export default function Home() {
   const [numberOfWeeks, setNumberOfWeeks] = useState(0)
-  const [currentWeek, setCurrentWeek] = useState()
+  const [currentYear, setCurrentYear] = useState()
   const [gender, setGender] = useState('male')
   const [birthday, setBirthday] = useState(moment().format('yyyy-MM-DD'))
   const [country, setCountry] = useState('Казахстан')
@@ -40,8 +40,8 @@ export default function Home() {
   }, [gender, country])
 
   useEffect(() => {
-    setCurrentWeek(moment(moment()._d).diff(birthday, 'weeks'))
-    setNumberOfWeeks(Math.ceil((generalInfo.age * 365) / 7))
+    setCurrentYear(moment(moment()._d).diff(birthday, 'years'))
+    setNumberOfWeeks(Math.ceil(generalInfo.age))
   }, [gender, birthday, generalInfo, numberOfWeeks])
 
   return (
@@ -57,7 +57,7 @@ export default function Home() {
         handleGenderChange={handleGenderChange}
       />
       <GeneralInfo {...generalInfo} birthday={birthday} />
-      <Grid number={numberOfWeeks} currentWeek={currentWeek} />
+      <Grid number={numberOfWeeks} currentYear={currentYear} />
     </div>
   )
 }

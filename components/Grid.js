@@ -1,8 +1,17 @@
-const GridCell = ({ color }) => {
+import { MdChildFriendly } from 'react-icons/md'
+import { MdBackpack } from 'react-icons/md'
+import { MdSchool } from 'react-icons/md'
+import { MdWork } from 'react-icons/md'
+import { GiMedicines } from 'react-icons/gi'
+import { BsFillPersonFill } from 'react-icons/bs'
+
+const GridCell = ({ color, icon }) => {
   return (
     <div
-      className={`h-2 max-w-[8px] rounded-full border-[0.5px] border-gray-800 ${color}`}
-    ></div>
+      className={`h-10 w-10 rounded-sm border-gray-800 ${color} flex items-center justify-center text-2xl`}
+    >
+      {icon}
+    </div>
   )
 }
 
@@ -40,32 +49,49 @@ const Legend = () => {
   )
 }
 
-const Grid = ({ number, currentWeek }) => {
+const Grid = ({ number, currentYear }) => {
   const numberOfCells = [...Array(number).keys()]
   return (
     <main>
-      {currentWeek ? (
+      {currentYear ? (
         <>
-          <Legend />
-          <div className="-mx-7 grid grid-cols-52 gap-0.5 gap-y-1 md:m-0">
+          {/* <Legend /> */}
+          <div className="flex flex-wrap gap-0.5 gap-y-1 md:m-0">
             {numberOfCells.map((cell) => {
               return (
-                <GridCell
-                  key={cell}
-                  color={
-                    cell < 364
-                      ? ''
-                      : cell >= 364 && cell < 936 && cell !== currentWeek
-                      ? 'bg-amber-300'
-                      : cell >= 936 && cell < 1144 && cell !== currentWeek
-                      ? 'bg-green-300'
-                      : cell >= 1144 && cell < 3380 && cell !== currentWeek
-                      ? 'bg-blue-300'
-                      : cell === currentWeek
-                      ? 'bg-slate-900'
-                      : 'bg-pink-300'
-                  }
-                />
+                <>
+                  <GridCell
+                    key={cell}
+                    color={
+                      cell < 7
+                        ? 'bg-green-100'
+                        : cell >= 7 && cell < 18 && cell !== currentYear
+                        ? 'bg-green-200'
+                        : cell >= 18 && cell < 22 && cell !== currentYear
+                        ? 'bg-green-300'
+                        : cell >= 22 && cell < 65 && cell !== currentYear
+                        ? 'bg-green-400'
+                        : cell === currentYear
+                        ? ''
+                        : 'bg-green-500'
+                    }
+                    icon={
+                      cell === 0 ? (
+                        <MdChildFriendly />
+                      ) : cell === 7 ? (
+                        <MdBackpack />
+                      ) : cell === 18 ? (
+                        <MdSchool />
+                      ) : cell === 22 ? (
+                        <MdWork />
+                      ) : cell === 65 ? (
+                        <GiMedicines />
+                      ) : cell === currentYear ? (
+                        <BsFillPersonFill />
+                      ) : null
+                    }
+                  />
+                </>
               )
             })}
           </div>
