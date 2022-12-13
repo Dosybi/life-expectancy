@@ -10,6 +10,9 @@ module.exports = {
         52: 'repeat(52, minmax(0, 1fr))',
         53: 'repeat(53, minmax(0, 1fr))',
       },
+      width: {
+        '1/10': '10%',
+      },
     },
   },
   plugins: [],

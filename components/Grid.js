@@ -8,7 +8,7 @@ import { BsFillPersonFill } from 'react-icons/bs'
 const GridCell = ({ color, icon }) => {
   return (
     <div
-      className={`h-10 w-10 rounded-sm border-gray-800 ${color} flex items-center justify-center text-2xl`}
+      className={`h-10 rounded-sm border-gray-800 ${color} flex items-center justify-center text-2xl`}
     >
       {icon}
     </div>
@@ -52,11 +52,10 @@ const Legend = () => {
 const Grid = ({ number, currentYear }) => {
   const numberOfCells = [...Array(number).keys()]
   return (
-    <main>
+    <main className="mx-auto w-full">
       {currentYear ? (
         <>
-          {/* <Legend /> */}
-          <div className="flex flex-wrap gap-0.5 gap-y-1 md:m-0">
+          <div className="m-0 mx-auto grid w-full grid-cols-10 gap-1 gap-y-1 p-0">
             {numberOfCells.map((cell) => {
               return (
                 <>
