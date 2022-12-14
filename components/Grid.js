@@ -8,7 +8,7 @@ import { BsFillPersonFill } from 'react-icons/bs'
 const GridCell = ({ color, icon, number, userAge }) => {
   return (
     <div
-      className={`tooltip ${number - 1 === userAge ? 'tooltip-secondary' : ''}`}
+      className={`tooltip ${number - 1 === userAge ? 'tooltip-warning' : ''}`}
       data-tip={
         number <= 6
           ? 'Раннее детство'
@@ -28,7 +28,7 @@ const GridCell = ({ color, icon, number, userAge }) => {
       <div
         className={`relative flex h-10 items-center justify-center rounded-sm border-gray-800 text-2xl ${color}`}
       >
-        <div className="absolute top-0 left-0 text-xs text-gray-500">
+        <div className="absolute -top-2 left-0 text-[0.5rem] text-gray-500">
           {number}
         </div>
         {icon}
