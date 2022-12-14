@@ -10,7 +10,7 @@ import GeneralInfo from '../components/GeneralInfo'
 import { data } from '../data'
 
 export default function Home() {
-  const [numberOfWeeks, setNumberOfWeeks] = useState(0)
+  const [numberOfYears, setNumberOfYears] = useState(0)
   const [currentYear, setCurrentYear] = useState()
   const [gender, setGender] = useState('male')
   const [birthday, setBirthday] = useState(moment().format('yyyy-MM-DD'))
@@ -41,8 +41,8 @@ export default function Home() {
 
   useEffect(() => {
     setCurrentYear(moment(moment()._d).diff(birthday, 'years'))
-    setNumberOfWeeks(Math.ceil(generalInfo.age))
-  }, [gender, birthday, generalInfo, numberOfWeeks])
+    setNumberOfYears(Math.ceil(generalInfo.age))
+  }, [gender, birthday, generalInfo, numberOfYears])
 
   return (
     <div className="mx-auto max-w-4xl p-8">
@@ -57,7 +57,7 @@ export default function Home() {
         handleGenderChange={handleGenderChange}
       />
       <GeneralInfo {...generalInfo} birthday={birthday} />
-      <Grid number={numberOfWeeks} currentYear={currentYear} />
+      <Grid number={numberOfYears} currentYear={currentYear} />
     </div>
   )
 }

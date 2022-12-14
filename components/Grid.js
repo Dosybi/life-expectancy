@@ -5,54 +5,43 @@ import { MdWork } from 'react-icons/md'
 import { GiMedicines } from 'react-icons/gi'
 import { BsFillPersonFill } from 'react-icons/bs'
 
-const GridCell = ({ color, icon }) => {
+const GridCell = ({ color, icon, number, userAge }) => {
   return (
     <div
-      className={`h-10 rounded-sm border-gray-800 ${color} flex items-center justify-center text-2xl`}
+      className={`tooltip ${number - 1 === userAge ? 'tooltip-secondary' : ''}`}
+      data-tip={
+        number <= 6
+          ? 'Раннее детство'
+          : number >= 7 && number < 18 && number - 1 !== userAge
+          ? 'Школа'
+          : number >= 18 && number < 22 && number - 1 !== userAge
+          ? 'Университет'
+          : number >= 22 && number < 55 && number - 1 !== userAge
+          ? 'Взрослая жизнь'
+          : number >= 55 && number - 1 !== userAge
+          ? 'Пенсия'
+          : number - 1 === userAge
+          ? 'Сейчас ты тут'
+          : ''
+      }
     >
-      {icon}
+      <div
+        className={`relative flex h-10 items-center justify-center rounded-sm border-gray-800 text-2xl ${color}`}
+      >
+        <div className="absolute top-0 left-0 text-xs text-gray-500">
+          {number}
+        </div>
+        {icon}
+      </div>
     </div>
-  )
-}
-
-const Legend = () => {
-  return (
-    <>
-      <div className="text-xs">
-        Одна строка — это один год, ячейка — неделя.
-      </div>
-      <div className="flex content-center">
-        <div className="mt-1 h-2 w-2 rounded-full border-[0.5px] border-gray-800"></div>
-        <div className="ml-2 text-xs">раннее детство</div>
-      </div>
-      <div className="flex content-center">
-        <div className="mt-1 h-2 w-2 rounded-full border-[0.5px] border-gray-800 bg-amber-300"></div>
-        <div className="ml-2 text-xs">школа</div>
-      </div>
-      <div className="flex content-center">
-        <div className="mt-1 h-2 w-2 rounded-full border-[0.5px] border-gray-800 bg-green-300"></div>
-        <div className="ml-2 text-xs">университет</div>
-      </div>
-      <div className="flex content-center">
-        <div className="mt-1 h-2 w-2 rounded-full border-[0.5px] border-gray-800 bg-blue-300"></div>
-        <div className="ml-2 text-xs">взрослая жизнь</div>
-      </div>
-      <div className="flex content-center">
-        <div className="mt-1 h-2 w-2 rounded-full border-[0.5px] border-gray-800 bg-pink-300"></div>
-        <div className="ml-2 text-xs">пенсия</div>
-      </div>
-      <div className="mb-4 flex content-center">
-        <div className="mt-1 h-2 w-2 rounded-full border-[0.5px] border-gray-800 bg-slate-900"></div>
-        <div className="ml-2 text-xs">текущая неделя</div>
-      </div>
-    </>
   )
 }
 
 const Grid = ({ number, currentYear }) => {
   const numberOfCells = [...Array(number).keys()]
+  const userAge = currentYear - 1
   return (
-    <main className="mx-auto w-full">
+    <main className="mx-auto w-full bg-white">
       {currentYear ? (
         <>
           <div className="m-0 mx-auto grid w-full grid-cols-10 gap-1 gap-y-1 p-0">
@@ -61,31 +50,33 @@ const Grid = ({ number, currentYear }) => {
                 <>
                   <GridCell
                     key={cell}
+                    number={cell + 1}
+                    userAge={userAge}
                     color={
-                      cell < 7
+                      cell < 6
                         ? 'bg-green-100'
-                        : cell >= 7 && cell < 18 && cell !== currentYear
+                        : cell >= 6 && cell < 17 && cell !== userAge
                         ? 'bg-green-200'
-                        : cell >= 18 && cell < 22 && cell !== currentYear
+                        : cell >= 17 && cell < 21 && cell !== userAge
                         ? 'bg-green-300'
-                        : cell >= 22 && cell < 65 && cell !== currentYear
+                        : cell >= 21 && cell < 54 && cell !== userAge
                         ? 'bg-green-400'
-                        : cell === currentYear
+                        : cell === userAge
                         ? ''
                         : 'bg-green-500'
                     }
                     icon={
                       cell === 0 ? (
                         <MdChildFriendly />
-                      ) : cell === 7 ? (
+                      ) : cell === 6 ? (
                         <MdBackpack />
-                      ) : cell === 18 ? (
+                      ) : cell === 17 ? (
                         <MdSchool />
-                      ) : cell === 22 ? (
+                      ) : cell === 21 ? (
                         <MdWork />
-                      ) : cell === 65 ? (
+                      ) : cell === 54 ? (
                         <GiMedicines />
-                      ) : cell === currentYear ? (
+                      ) : cell === userAge ? (
                         <BsFillPersonFill />
                       ) : null
                     }
